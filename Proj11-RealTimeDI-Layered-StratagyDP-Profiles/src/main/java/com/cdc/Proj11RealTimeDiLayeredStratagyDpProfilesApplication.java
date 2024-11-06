@@ -7,13 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 
 import com.cdc.controller.PayrollOperationsController;
 import com.cdc.model.Employee;
-import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @SpringBootApplication
 public class Proj11RealTimeDiLayeredStratagyDpProfilesApplication {
@@ -21,16 +18,18 @@ public class Proj11RealTimeDiLayeredStratagyDpProfilesApplication {
 	@Autowired
 	private Environment env;
 
-	@Bean(name = "c3pods")
-	@Profile("test")
-	public ComboPooledDataSource createD3PODS() throws Exception {
-		ComboPooledDataSource cpds = new ComboPooledDataSource();
-		cpds.setDriverClass(env.getRequiredProperty("spring.datasource.driver-class-name"));
-		cpds.setJdbcUrl(env.getRequiredProperty("spring.datasource.url"));
-		cpds.setUser(env.getRequiredProperty("spring.datasource.username"));
-		cpds.setPassword(env.getRequiredProperty("spring.datasource.password"));
-		return cpds;
-	}
+	/*
+	 * @Bean(name = "c3pods")
+	 * 
+	 * @Profile("test") public ComboPooledDataSource createD3PODS() throws Exception
+	 * { ComboPooledDataSource cpds = new ComboPooledDataSource();
+	 * cpds.setDriverClass(env.getRequiredProperty(
+	 * "spring.datasource.driver-class-name"));
+	 * cpds.setJdbcUrl(env.getRequiredProperty("spring.datasource.url"));
+	 * cpds.setUser(env.getRequiredProperty("spring.datasource.username"));
+	 * cpds.setPassword(env.getRequiredProperty("spring.datasource.password"));
+	 * return cpds; }
+	 */
 
 	public static void main(String[] args) {
 		try (ConfigurableApplicationContext ctx = SpringApplication
